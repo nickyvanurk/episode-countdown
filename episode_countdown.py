@@ -4,6 +4,9 @@ import requests
 import re
 from bs4 import BeautifulSoup
 
+def is_url_valid(url):
+  return requests.get(url).status_code == 200
+
 def get_countdown_data(url):
   request = requests.get(url)
   soup = BeautifulSoup(request.content, 'lxml')
@@ -17,9 +20,14 @@ def filter_countdown_data(data):
   return data.strip()
 
 def main(query):
-  data = get_countdown_data('http://next-episode.net/' + query)
-  data = filter_countdown_data(data);
-  print(data)
+  URL = 'http://next-episode.net/' + query
+
+  if is_url_valid(URL):
+    data = get_countdown_data('http://next-episode.net/' + query)
+    data = filter_countdown_data(data);
+    print(data)
+  else:
+    print('Unable to aquire any data, please check your query')
 
 if __name__ == "__main__":
   sys.exit(main(sys.argv[1]))
