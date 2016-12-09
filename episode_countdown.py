@@ -33,8 +33,7 @@ def have_internet():
 
 def main(query):
   if not have_internet():
-    return print("No internet acces.")
-
+    return print("No internet access.")
   URL = 'http://next-episode.net/' + query
   if is_url_valid(URL):
     data = get_countdown_data('http://next-episode.net/' + query)
