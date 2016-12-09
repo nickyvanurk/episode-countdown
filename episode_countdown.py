@@ -32,4 +32,7 @@ def main(query):
   print('Unable to aquire any data, please check your query.')
 
 if __name__ == "__main__":
-  sys.exit(main(sys.argv[1]))
+  if len(sys.argv) > 1:
+    sys.exit(main(sys.argv[1]))
+  else:
+    print('No argument supplied.')
