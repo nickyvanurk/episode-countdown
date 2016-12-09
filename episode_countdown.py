@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import sys
 import requests
+import http.client
 from bs4 import BeautifulSoup
 
 def is_url_valid(url):
@@ -22,7 +23,18 @@ def filter_data(data):
   data = data[:data.rfind('\n')]
   return data.strip()
 
+def have_internet():
+  conn = http.client.HTTPConnection("www.google.com")
+  try:
+    conn.request("HEAD", "/")
+    return True
+  except:
+    return False
+
 def main(query):
+  if not have_internet():
+    return print("No internet acces.")
+
   URL = 'http://next-episode.net/' + query
   if is_url_valid(URL):
     data = get_countdown_data('http://next-episode.net/' + query)
