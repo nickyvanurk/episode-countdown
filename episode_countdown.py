@@ -3,6 +3,7 @@ import sys
 import requests
 import http.client
 from bs4 import BeautifulSoup
+from slugify import slugify
 
 def is_url_valid(url):
   return requests.get(url).status_code == 200
@@ -34,13 +35,13 @@ def have_internet():
 def main(query):
   if not have_internet():
     return print("No internet access.")
-  URL = 'http://next-episode.net/' + query
+  URL = 'http://next-episode.net/' + slugify(query)
   if is_url_valid(URL):
-    data = get_countdown_data('http://next-episode.net/' + query)
+    data = get_countdown_data(URL)
     if data:
       print(filter_data(data))
       return 0
-  print('Unable to aquire any data, please check your query.')
+  print('Unable to aquire any data, please check your argument.')
 
 if __name__ == "__main__":
   if len(sys.argv) > 1:
