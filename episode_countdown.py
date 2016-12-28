@@ -6,7 +6,10 @@ from bs4 import BeautifulSoup
 from slugify import slugify
 
 def is_url_valid(url):
-  return requests.get(url).status_code == 200
+  try:
+    return requests.get(url).status_code == 200
+  except:
+    return False
 
 def get_countdown_data(url):
   request = requests.get(url)
@@ -24,17 +27,7 @@ def filter_data(data):
   data = data[:data.rfind('\n')]
   return data.strip()
 
-def have_internet():
-  conn = http.client.HTTPConnection("www.google.com")
-  try:
-    conn.request("HEAD", "/")
-    return True
-  except:
-    return False
-
 def main(query):
-  if not have_internet():
-    return print("No internet access.")
   URL = 'http://next-episode.net/' + slugify(query)
   if is_url_valid(URL):
     data = get_countdown_data(URL)
