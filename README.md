@@ -1,4 +1,8 @@
 # Episode Countdown
+
+[![Build Status](https://travis-ci.org/nickyvanurk/episode-countdown.svg?branch=master)](https://travis-ci.org/nickyvanurk/episode-countdown)
+[![Coverage Status](https://coveralls.io/repos/github/nickyvanurk/episode-countdown/badge.svg?branch=master)](https://coveralls.io/github/nickyvanurk/episode-countdown?branch=master)
+
 A simple but useful script that will display a countdown from now until the next episode release of a specified TV show.
 
 ## Requirements
