@@ -5,6 +5,7 @@ python:
 install:
   - pip install pytest pytest-cov
   - pip install coveralls
+  - python3 -m pip install lxml
   - python3 -m pip install beautifulsoup4
   - python3 -m pip install slugify
 script: pytest
